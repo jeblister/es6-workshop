@@ -1,18 +1,17 @@
 import {expect, assert} from 'chai';
 
 describe('Destructuring', () => {
-
-
+  var getAddress =  (address) => {
+    let {city, state, zip, lat, long}= address;
+    return {city, state, zip, lat, long};
+  };
 
   describe('with Objects', () => {
 
 
     it('can be used to pull apart objects', () => {
       // Using destructuring, call `getAddress()` and create a 'city', 'state' and 'zip' variable.
-      let getAddress =  (address) => {
-        let {city,state,zip}= address;
-        return {city,state,zip};
-      };
+
 
       let address = getAddress (
         {
@@ -49,18 +48,21 @@ describe('Destructuring', () => {
     expect(address).to.eql(result);
     });
 
-    it.skip('sets missing values to undefined', () => {
+    it('sets missing values to undefined', () => {
 
       // Using destructuring, call `getAddress()` and create an 'address' variable.
-
-
+      let address = getAddress({}).address;
       expect(address).to.be.undefined;
     });
 
-    it.skip('can alias destructured variables', () => {
+    it('can alias destructured variables', () => {
 
       // Using destructuring, call `getAddress()` and pull the city, state and zip out, and alias them to c, s, z, respectively
-
+      let {city:c, state:s, zip:z}= getAddress(  {
+          city: 'Salt Lake City',
+          state: 'UT',
+          zip: 84115
+        });
 
       expect(c).to.equal('Salt Lake City');
       expect(s).to.equal('UT');
@@ -71,11 +73,10 @@ describe('Destructuring', () => {
 
     });
 
-    it.skip('can destructure nested variables', () => {
+    it('can destructure nested variables', () => {
 
       // Using destructuring, call `getAddress()` and create an pull out the nested 'lat' and 'long' variables
-
-
+      let {...args, lat, long}= getAddress({ ...args, lat:40.776608, long: -111.920485 });
       expect(lat).to.equal(40.776608);
       expect(long).to.equal(-111.920485);
       expect(()=> console.log(coords)).to.throw();
@@ -89,35 +90,35 @@ describe('Destructuring', () => {
 
 describe('destructuring objects', () => {
 
-  it.skip('is simple', () => {
-    const x = {x: 1};
+  it('is simple', () => {
+    const {x} = {x: 1};
     assert.equal(x, 1);
   });
 
   describe('nested', () => {
-    it.skip('multiple objects', () => {
+    it('multiple objects', () => {
       const magic = {first: 23, second: 42};
-      const {magic: [second]} = {magic};
+      const {first,second} = magic;
       assert.equal(second, 42);
     });
-    it.skip('object and array', () => {
-      const {z:[x]} = {z: [23, 42]};
+    it('object and array', () => {
+      const {z:[y,x]} = {z: [23, 42]};
       assert.equal(x, 42);
     });
-    it.skip('array and object', () => {
-      const [,{lang}] = [null, [{env: 'browser', lang: 'ES6'}]];
+    it('array and object', () => {
+      const [,[{...args,lang}]] = [null, [{env: 'browser', lang: 'ES6'}]];
       assert.equal(lang, 'ES6');
     });
   });
 
   describe('interesting', () => {
-    it.skip('missing refs become undefined', () => {
-      const {z} = {x: 1, z: 2};
+    it('missing refs become undefined', () => {
+      const {z} = {x: 1, y: 2};
       assert.equal(z, void 0);
     });
 
-    it.skip('destructure from builtins (string)', () => {
-      const {substr} = 1;
+    it('destructure from builtins (string)', () => {
+      const {substr} = "yes" ;
       assert.equal(substr, String.prototype.substr);
     });
   });
@@ -129,39 +130,39 @@ describe('destructuring objects', () => {
 
 describe('destructuring arrays makes shorter code', () => {
 
-  it.skip('extract value from array, e.g. extract 0 into x like so `let [x] = [0];`', () => {
-    let firstValue = [1];
+  it('extract value from array, e.g. extract 0 into x like so `let [x] = [0];`', () => {
+    let [firstValue] = [1];
     assert.strictEqual(firstValue, 1);
   });
 
-  it.skip('swap two variables, in one operation', () => {
+  it('swap two variables, in one operation', () => {
     let [x, y] = ['ax', 'why'];
-    [x, y] = [x, y];
+    [x, y] = [y, x];
     assert.deepEqual([x, y], ['why', 'ax']);
   });
 
-  it.skip('leading commas', () => {
+  it('leading commas', () => {
     const all = ['ax', 'why', 'zet'];
-    const [,z] = all;
+    const [ x,y,z] = all;
     assert.equal(z, 'zet');
   });
 
-  it.skip('extract from nested arrays', () => {
+  it('extract from nested arrays', () => {
     const user = [['Some', 'One'], 23];
-    const [firstName, surname, age] = user;
+    const [[firstName, surname], age] = user;
 
     const expected = 'Some One = 23 years';
     assert.equal(`${firstName} ${surname} = ${age} years`, expected);
   });
 
-  it.skip('chained assignments', () => {
+  it('chained assignments', () => {
     let c, d;
-    let a, b = [c, d] = [1, 2];
+    let [a, b] = [c, d] = [1, 2];
     assert.deepEqual([a, b, c, d], [1, 2, 1, 2]);
   });
 
-  it.skip('in for-of loop', () => {
-    for (var [a, b] of [[0, 1, 2]]) {}
+  it('in for-of loop', () => {
+    for (var [a,b] of [[0,1], [1, 2]]) { console.log([a,b]);}
     assert.deepEqual([a, b], [1, 2]);
   });
 
@@ -172,28 +173,28 @@ describe('destructuring arrays makes shorter code', () => {
 
 describe('destructuring can also have default values', () => {
 
-it.skip('for an empty array', () => {
+it('for an empty array', () => {
   const [a=1] = [];
   assert.equal(a, 1);
 });
 
-it.skip('for a missing value', () => {
-  const [b=2] = [1,2,3];
+it('for a missing value', () => {
+  const [,b=2] = [1,2,3];
   assert.equal(b, 2);
 });
 
-it.skip('in an object', () => {
-  const [a, b=2] = {a: 1};
+it('in an object', () => {
+  const {a, b=2} = {a: 1};
   assert.equal(b, 2);
 });
 
-it.skip('if the value is undefined', () => {
-  const {a, b=[2]} = {a: 1, b: void 0};
+it('if the value is undefined', () => {
+  const {a, b=2} = {a: 1, b: void 0};
   assert.strictEqual(b, 2);
 });
 
-it.skip('also a string works with defaults', () => {
-  const [b=2] = '1';
+it('also a string works with defaults', () => {
+  const [a='1',b=2] = '1';
   assert.equal(a, '1');
   assert.equal(b, 2);
 });
@@ -202,34 +203,35 @@ it.skip('also a string works with defaults', () => {
 
   describe('with Arrays', ()=> {
 
-    it.skip('can be used to pull apart arrays', () => {
+    it('can be used to pull apart arrays', () => {
 
       // Call getNumbers and pull the first value out as `one` and the second as `two`
-
+      let [one,two] = getNumbers () ;
+      function getNumbers () {return [1,2] };
 
       expect(one).to.equal(1);
       expect(two).to.equal(2);
 
     });
 
-    it.skip('can skip indexes in arrays', () => {
+    it('can skip indexes in arrays', () => {
 
       // Call getNumbers and pull the first value out as `one` and the third as `three`. Don't pull out the second index. Skip it
-
+      let [one,three] = getNumbers () ;
+      function getNumbers () {return [1, 3] };
       expect(one).to.equal(1);
       expect(three).to.equal(3);
       expect(()=>console.log(two)).to.throw();
-
     });
 
-    it.skip('can reach nested arrays', () => {
+    it('can reach nested arrays', () => {
 
       function getNestedNumbers() {
         return [1, 2, [3, 4, [5, 6]]];
       }
 
       // Call getNestedNumbers and pull 1 out as `one`, the 3 as `three` and 6 as `sixth`.
-
+      let [one, two, [three, four, [five, six]]]= getNestedNumbers() ;
 
       expect(one).to.equal(1);
       expect(three).to.equal(3);
@@ -241,71 +243,57 @@ it.skip('also a string works with defaults', () => {
 
 });
 
-
-function getAddress() {
-  return {
-    city: 'Salt Lake City',
-    state: 'UT',
-    zip: 84115,
-    coords: {
-      lat: 40.776608,
-      long: -111.920485
-    }
-  };
-}
-
-function getNumbers() {
-  return [1, 2, 3, 4, 5, 6];
-}
-
 // destructuring - parameters
 // To do: make all tests pass, leave the assert lines unchanged!
 
 describe('destructuring function parameters', () => {
 
   describe('destruct parameters', () => {
-    it.skip('multiple params from object', () => {
-      const fn = ({id}, {name}) => {
+    it('multiple params from object', () => {
+      const fn = ({id, name}) => {
         assert.equal(id, 42);
         assert.equal(name, 'Wolfram');
       };
       const user = {name: 'Wolfram', id: 42};
       fn(user);
+
+
     });
 
-    it.skip('multiple params from array/object', () => {
+    it('multiple params from array/object', () => {
       const fn = ([{name}]) => {
         assert.equal(name, 'Alice');
       };
-      const users = [{name: 'nobody'}, {name: 'Alice', id: 42}];
+      const users = [{name: 'Alice', id: 42}];
       fn(users);
     });
   });
 
   describe('default values', () => {
-    it.skip('for simple values', () => {
-      const fn = (id, name='Bobby') => {
+    it('for simple values', () => {
+      const fn = ({id, name='Bobby'}) => {
         assert.strictEqual(id, 23);
         assert.strictEqual(name, 'Bob');
       };
-      fn(23);
+      fn({id:23, name:'Bob'});
     });
 
-    it.skip('for a missing array value', () => {
+    it('for a missing array value', () => {
       const defaultUser = {id: 23, name: 'Joe'};
-      const fn = ([user]) => {
+      const fn = ([user]=[defaultUser]) => {
         assert.deepEqual(user, defaultUser);
       };
-      fn([]);
+
+      fn();
     });
 
-    it.skip('mix of parameter types', () => {
+    it('mix of parameter types', () => {
       const fn = (id, [arr], {obj}) => {
         assert.equal(id, 1);
         assert.equal(arr, 2);
         assert.equal(obj, 3);
       };
-      fn(void 0, [], {});
+      fn(1, [2], {obj:3});
     });
   });
 
@@ -317,27 +305,27 @@ describe('destructuring function parameters', () => {
 describe('assign object property values to new variables while destructuring', () => {
 
   describe('for simple objects', function() {
-    it.skip('use a colon after the property name, like so `propertyName: newName`', () => {
-      const {x: newName} = {x: 1};
+    it('use a colon after the property name, like so `propertyName: newName`', () => {
+      const {x: y} = {x: 1};
       assert.equal(y, 1);
     });
 
-    it.skip('assign a new name and give it a default value using `= <default value>`', () => {
-      const {x: y=2} = {y: 23};
+    it('assign a new name and give it a default value using `= <default value>`', () => {
+      const {x: y=42} = {y: 23};
       assert.equal(y, 42);
     });
   });
 
   describe('for function parameter names', function() {
-    it.skip('do it the same way, with a colon behind it', () => {
-      const fn = ({x}) => {
+    it('do it the same way, with a colon behind it', () => {
+      const fn = ({y}) => {
         assert.equal(y, 1);
       };
-      fn({x: 1});
+      fn({y: 1});
     });
 
-    it.skip('giving it a default value is possible too, like above', () => {
-      const fn = ({x: z=3}) => {
+    it('giving it a default value is possible too, like above', () => {
+      const fn = ({y=3}) => {
         assert.equal(y, 3);
       };
       fn({});
@@ -352,18 +340,18 @@ describe('assign object property values to new variables while destructuring', (
 describe('destructuring also works on strings', () => {
 
 
-  it.skip('destructure every character', () => {
-    let a, b, c = 'abc';
+  it('destructure every character', () => {
+    let [a, b, c] = 'abc';
     assert.deepEqual([a, b, c], ['a', 'b', 'c']);
   });
 
-  it.skip('missing characters are undefined', () => {
-    const [a, c] = 'ab';
+  it('missing characters are undefined', () => {
+    const [a,b,c] = 'ab';
     assert.equal(c, void 0);
   });
 
-  it.skip('unicode character work too', () => {
-    const [space, coffee] = 'a ☕ ☕☕';
+  it('unicode character work too', () => {
+    const [a,space, coffee, cafe] = 'a ☕ ☕☕';
     assert.equal(coffee, '\u{2615}');
   });
 

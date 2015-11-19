@@ -1,3 +1,4 @@
+import './00_mocha.test';
 import './01_block-scoping.test';
 import './02_template-literals.test';
 import './03_new-apis.test';

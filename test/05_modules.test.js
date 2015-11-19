@@ -1,13 +1,9 @@
 // WRITE YOUR IMPORT STATEMENTS HERE
-import Mathy from '../common/Mathy';
-
-
-
-
 import {expect} from 'chai';
 
-describe('ES6 Modules', () => {
-  it.skip('can import Mathy', () => {
+
+describe('ES6 Modules: use `import` to import functions that have been exported (somewhere else)', () => {
+  it('import an entire module using `import <name> from "<moduleName> or path"`', () => {
 
     // I DID THIS ONE FOR YOU!
     expect(Mathy.sqrt).to.exist;
@@ -16,8 +12,7 @@ describe('ES6 Modules', () => {
   });
 
 
-  it.skip('Can alias the import name', () => {
-
+  it('Can alias the import name : using `{member as alias}` as memberName', () => {
     // Import `myMathy` to ge these tests to pass.
     // NOTE: All import statements have to be done at the top of the file
 
@@ -27,7 +22,7 @@ describe('ES6 Modules', () => {
     expect(myMathy.diag).to.equal(Mathy.diag);
   });
 
-  it.skip('can destructure the import, to only retain pieces of the import', () => {
+  it('can destructure the import, to only retain pieces of the import using `import {<memberName>} from "module"` you will separate multiple members with a comma', () => {
 
     // Import `Mathy` again, but pull out only the `sqrt` as mySqrt, and `square` as mySquare
     // NOTE: All import statements have to be done at the top of the file
@@ -38,7 +33,7 @@ describe('ES6 Modules', () => {
     expect(mySquare).to.equal(Mathy.square);
   });
 
-  it.skip('can import from my node_modules', () => {
+  it('can import from my node_modules', () => {
 
     // import `lodash`
     // NOTE: All import statements have to be done at the top of the file

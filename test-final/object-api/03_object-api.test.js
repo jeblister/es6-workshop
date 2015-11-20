@@ -3,7 +3,7 @@ import {assert} from 'chai';
 // To do: make all tests pass, leave the assert lines unchanged!
 
 describe(`Object`, () => {
-  it.skip(`should be easy to copy properties from one object to another`, () => {
+  it(`should be easy to copy properties from one object to another`, () => {
     const source1 = {
       a: {
         b: 'c',

@@ -40,11 +40,11 @@ describe('The object literal allows for new shorthands', () => {
   const y = 2;
 
   describe('with variables', () => {
-    it.skip('the short version for `{x: x}` is {x}', () => {
+    it('the short version for `{x: x}` is {x}', () => {
       const short = {y};
       assert.deepEqual(short, {y: y});
     });
-    it.skip('works with multiple variables too', () => {
+    it('works with multiple variables too', () => {
       const short = {x, y};
       assert.deepEqual(short, {x: x, y: y});
     });
@@ -54,17 +54,17 @@ describe('The object literal allows for new shorthands', () => {
 
     const func = () => func;
 
-    it.skip('using the name only uses it as key', () => {
+    it('using the name only uses it as key', () => {
       const short = {func};
       assert.deepEqual(short, {func: func});
     });
 
-    it.skip('a different key must be given explicitly, just like before ES6', () => {
-      const short = {[otherKey]: func};
+    it('a different key must be given explicitly, just like before ES6', () => {
+      const short = {['otherKey']: func};
       assert.deepEqual(short, {otherKey: func});
     });
 
-    it.skip('inline functions, can written as `obj={func(){}}` instead of `obj={func:function(){}}`', () => {
+    it('inline functions, can written as `obj={func(){}}` instead of `obj={func:function(){}}`', () => {
       const short = {
         inlineFunc(){return 'I am inline'}
       };
@@ -79,33 +79,33 @@ describe('The object literal allows for new shorthands', () => {
 
 describe('Object literal properties may be computed values', () => {
 
-  it.skip('a computed property `x` needs to be surrounded by `[]`', () => {
+  it('a computed property `x` needs to be surrounded by `[]`', () => {
     const propertyName = 'x';
     const obj = {[propertyName]: 1};
     assert.equal(obj.x, 1);
   });
 
-  it.skip('can also get a function assigned', () => {
+  it('can also get a function assigned', () => {
     const key = 'func';
     const obj = {[key]: function(){return 'seven'}};
     assert.equal(obj.func(), 'seven');
   });
 
-  it.skip('the key may also be the result of a function call', () => {
+  it('the key may also be the result of a function call', () => {
     const getName = () => 'propertyName';
     const obj = {[getName()]: function () {return 'seven'}};
     assert.equal(obj.propertyName(), 'seven');
   });
 
-  it.skip('the key can also be constructed by an expression', () => {
+  it('the key can also be constructed by an expression', () => {
     const what = 'Name';
     const obj = {['property' + what]: true};
     assert.equal('propertyName' in obj, true);
   });
 
-  it.skip('accessor keys can be computed names too', () => {
+  it('accessor keys can be computed names too', () => {
     const obj = {
-      ['key']() {return 1;}
+      ['key']: (() => 1)()
     };
     assert.equal(obj.key, 1);
   });

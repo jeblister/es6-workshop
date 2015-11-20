@@ -1,8 +1,8 @@
 import './00_mocha.test';
 
-//import './01_new-apis.test';
+import './01_new-apis.test';
 
-//import './array-api/fill'
+import './array-api/fill'
 //import './array-api/find'
 //import './array-api/findIndex'
 //import './array-api/from'
@@ -10,9 +10,9 @@ import './00_mocha.test';
 //import './array-api/of'
 //import './array-api/values'
 
-//import './arrow-functions/09_arrow.test';
+import './arrow-functions/09_arrow.test';
 
-//import './block-scoping/01_block-scoping.test';
+import './block-scoping/01_block-scoping.test';
 
 //import './class/10_class.test';
 //import './class/10_class.accessors.test';
@@ -21,9 +21,9 @@ import './00_mocha.test';
 //import './class/10_class.static.test';
 //import './class/10_class.super.test';
 
-//import './default-parameters/07_parameters.test';
+import './default-parameters/07_parameters.test';
 
-//import './destructuring/04_destructure.test';
+import './destructuring/04_destructure.test';
 
 //import './generator/15_generators.test';
 
@@ -35,13 +35,13 @@ import './00_mocha.test';
 //import './map/12_maps.test';
 //import './map/13_weakmap.test';
 
-//import './modules/05_modules.test';
+import './modules/05_modules.test';
 
 //import './number-api/isinteger';
 
-//import './object-api/03_object-api.test'
+import './object-api/03_object-api.test'
 
-//import './object-literal/06_object-literal.test';
+import './object-literal/06_object-literal.test';
 
 //import './promise/14_promises.test';
 
@@ -56,12 +56,12 @@ import './00_mocha.test';
 
 //import './set/11_set.test';
 
-//import './spread/08_spread.test';
+import './spread/08_spread.test';
 
 //import './string-api/03_string-api.test'
 
 //import './symbol/16_symbols.test';
 
-//import './template-strings/02_template-literals.test';
+import './template-strings/02_template-literals.test';
 
 //import './unicode/in-strings';

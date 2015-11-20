@@ -2,7 +2,7 @@ import {assert} from 'chai';
 //  array - entries
 // To do: make all tests pass, leave the assert lines unchanged!
 
-describe('`[].entries()` returns an iterator object with all entries', function() {
+describe.only('`[].entries()` returns an iterator object with all entries', function() {
 
   it('returns key+value for each element', function() {
     const arr = ['a', 'b', 'c'];

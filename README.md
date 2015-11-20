@@ -58,6 +58,15 @@ Each directory
 
 This will execute the tests in the `test` directory. Currently all of these tests are disabled, using `it.skip`.  You can test each subdirectory  by uncomment the import file in `./test/index.js`.
 
+ If you want to run a single describe() function, you can add a .only() to the function call, like this :
+```
+describe(function () {
+  // these tests will be skipped
+});
+describe.only(function () {
+  // these tests will run
+});
+```
 Your job is to one-by-one turn each test back on and get the test to pass, by writing the required ES6 code. Once you have written the required code, the tests will pass, and you can move onto the next test.
 
 # Thanks

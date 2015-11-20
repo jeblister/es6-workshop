@@ -1,4 +1,115 @@
-import {expect} from 'chai';
+import {expect, assert} from 'chai';
+
+//  Revisiting functions
+// To do: make all tests pass, leave the asserts unchanged!
+describe('function definition', function() {
+
+  //In JavaScript, you can define a function through either a function declaration or a function expression
+  // function f() {} // declaration
+  // var g = function () {}; // expression and assignment
+
+  it.skip('What is this?', function() {
+    var func = function f(b) {
+      return this + b;
+    };
+    // func(1); // undefined.a : error cannot read property of undefined
+    assert.throws(() => { func(1) });
+    //  func.apply({a: 1}, [2]); // this.a + b = 1 + 2 = 3
+    assert.equal( func.apply({a: 1}, [2]), 3);
+    // func.call({a: 1}, 2); // this.a + b = 1 + 2 = 3
+    assert.equal( func.call({a: 1}, 2), 3);
+  });
+
+  it.skip('Object method', function() {
+    var obj = {
+      a: 104,
+      f: function(b) { return this.a + b; }
+    };
+
+    assert.equal( obj.f(1), 11);
+    assert.equal( obj.f.apply({a: 1}, [2]), 3);
+    assert.equal( obj.f.call({a: 1}, 2), 3);
+  });
+
+  it.skip('Using .bind(…)', function() {
+
+    let f = function f(b) {
+      return this.a + b;
+    };
+
+    let g = f({a: 100});
+    assert.equal( g(1), 101);
+    // This `this` cannot be changed through .apply() and .call().
+    assert.equal(g.apply({a: 1},[1]), 101)
+    assert.equal(g.call({a: 1},1), 101)
+  });
+
+});
+// arrow functions - basics
+// To do: make all tests pass, leave the asserts unchanged!
+
+describe('arrow functions', function() {
+
+  it.skip('are shorter to write', function() {
+    var func = () => {
+      return 'I am func';
+    };
+    assert.equal(func(), 'I am func');
+  });
+
+  it.skip('a single expression, without curly braces returns too', function() {
+    var func = () => {'I return too'};
+    assert.equal(func(), 'I return too');
+  });
+
+  it.skip('one parameter can be written without parens', () => {
+    var func = p => param - 1;
+    assert.equal(func(23), 24);
+  });
+
+  it.skip('many params require parens', () => {
+    var func = param => param + param1;
+    assert.equal(func(23, 42), 23+42);
+  });
+
+  it.skip('body needs parens to return an object', () => {
+    var func = () => {iAm: 'an object'};
+    assert.deepEqual(func(), {iAm: 'an object'});
+  });
+
+});
+
+
+//  arrow functions - binding
+// To do: make all tests pass, leave the asserts unchanged!
+
+describe('arrow functions have lexical `this`, no dynamic `this`', () => {
+
+  it('What is this?', function() {
+    this.who = 'Ali';
+
+    var obj = {
+      who: 'Mohamed',
+      h : () => this.who
+   };
+
+    assert.notEqual(obj.h(), 'Mohamed');
+  });
+  it('Never use arrow functions as methods', function() {
+    this.who = 'Ali';
+
+    var obj = {
+      who: 'Mohamed',
+      // BAD
+      h : () => this.who,
+      // Good
+      f() {return this.who}
+   };
+
+    assert.equal(obj.h(), 'Ali');
+    assert.equal(obj.f(), 'Mohamed');
+  });
+});
 
 describe('Arrow Functions', () => {
 
@@ -67,18 +178,18 @@ describe('Arrow Functions', () => {
     // REPLACE ALL REGULAR FUNCTION WITH ARROW FUNCTIONS
 
     let shoppingList = data
-      .filter(function(d) {
-        return d.type != 'Widget';
-      }) // Remove Widgets
-      .filter(function(d) {
-        return d.price < 5;
-      }) // Find only remaining items with price < 5
-      .sort(function(d) {
-        return d.qty * -1;
-      }) // Sort by price, desc
-      .map(function(d) {
-        return d.name;
-      });// Pull just the name from each item
+    .filter(function(d) {
+      return d.type != 'Widget';
+    }) // Remove Widgets
+    .filter(function(d) {
+      return d.price < 5;
+    }) // Find only remaining items with price < 5
+    .sort(function(d) {
+      return d.qty * -1;
+    }) // Sort by price, desc
+    .map(function(d) {
+      return d.name;
+    });// Pull just the name from each item
 
     expect(shoppingList.shift()).to.equal('Bacon');
     expect(shoppingList.shift()).to.equal('JT Best Hits');

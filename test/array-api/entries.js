@@ -4,14 +4,14 @@ import {assert} from 'chai';
 
 describe('`[].entries()` returns an iterator object with all entries', function() {
 
-  it('returns key+value for each element', function() {
+  it.skip('returns key+value for each element', function() {
     const arr = ['a', 'b', 'c'];
     const entriesAsArray = Array.from(arr.___());
 
     assert.deepEqual(entriesAsArray, [[0,"a"], [1,"b"], [2,"c"]]);
   });
 
-  it('empty elements contain the value `undefined`', function() {
+  it.skip('empty elements contain the value `undefined`', function() {
     const arr = ['one'];
     arr[2] = 'three';
     const secondValue = arr.entries();
@@ -21,7 +21,7 @@ describe('`[].entries()` returns an iterator object with all entries', function(
 
   describe('returns an iterable', function() {
 
-    it('has `next()` to iterate', function() {
+    it.skip('has `next()` to iterate', function() {
       const arr = ['one'];
       const value = arr;
 

@@ -4,20 +4,20 @@ import {assert} from 'chai';
 
 describe('class creation', () => {
 
-  it('is as simple as `class XXX {}`', function() {
+  it.skip('is as simple as `class XXX {}`', function() {
     let TestClass;
 
     const instance = new TestClass();
     assert.equal(typeof instance, 'object');
   });
 
-  it('class is block scoped', () => {
+  it.skip('class is block scoped', () => {
     class Inside {}
     {class Inside {}}
     assert.equal(typeof Inside, 'undefined');
   });
 
-  it('special method is `constructor`', function() {
+  it.skip('special method is `constructor`', function() {
     class User {
       constructor(id) {}
     }
@@ -26,7 +26,7 @@ describe('class creation', () => {
     assert.equal(user.id, 42);
   });
 
-  it('defining a method is simple', function() {
+  it.skip('defining a method is simple', function() {
     class User {
     }
 
@@ -34,7 +34,7 @@ describe('class creation', () => {
     assert.equal(notATester.writesTests(), false);
   });
 
-  it('multiple methods need no commas (opposed to object notation)', function() {
+  it.skip('multiple methods need no commas (opposed to object notation)', function() {
     class User {
       wroteATest() { this.everWroteATest = true; }
       isLazy() {  }
@@ -46,7 +46,7 @@ describe('class creation', () => {
     assert.equal(tester.isLazy(), false);
   });
 
-  it('anonymous class', () => {
+  it.skip('anonymous class', () => {
     const classType = typeof {};
     assert.equal(classType, 'function');
   });

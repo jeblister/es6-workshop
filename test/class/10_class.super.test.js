@@ -4,7 +4,7 @@ import {assert} from 'chai';
 
 describe('class', () => {
 
-  it('if you `extend` a class, use `super()` to call the parent constructor', () => {
+  it.skip('if you `extend` a class, use `super()` to call the parent constructor', () => {
     class A {constructor() { this.levels = 1; }}
     class B {
       constructor() {
@@ -15,7 +15,7 @@ describe('class', () => {
     assert.equal(new B().levels, 2);
   });
 
-  it('`super()` may also take params', () => {
+  it.skip('`super()` may also take params', () => {
     class A {constructor(startValue=1, addTo=1) { this.counter = startValue + addTo; }}
     class B extends A {
       constructor(...args) {
@@ -27,7 +27,7 @@ describe('class', () => {
     assert.equal(new B(42, 2).counter, 45);
   });
 
-  it('it is important where you place your `super()` call!', () => {
+  it.skip('it is important where you place your `super()` call!', () => {
     class A {inc() { this.countUp = 1; }}
     class B extends A {
       inc() {
@@ -40,7 +40,7 @@ describe('class', () => {
     assert.equal(new B().inc(), 1);
   });
 
-  it('use `super.constructor` to find out if there is a parent constructor', () => {
+  it.skip('use `super.constructor` to find out if there is a parent constructor', () => {
     class A extends null {
       constructor() {
         super();
@@ -57,28 +57,28 @@ describe('class', () => {
 
   describe('inside a class use `super` to access parent methods', () => {
 
-    it('use of `super` without `extends` fails (already when transpiling)', () => {
+    it.skip('use of `super` without `extends` fails (already when transpiling)', () => {
       // uncomment this and fix it
       // class A {hasSuper() { return super; }}
 
       assert.equal(new A().hasSuper(), false);
     });
 
-    it('`super` with `extends` calls the method of the given name of the parent class', () => {
+    it.skip('`super` with `extends` calls the method of the given name of the parent class', () => {
       class A {hasSuper() { return true; }}
       class B extends A {hasSuper() { return super.hasSuper; }}
 
       assert.equal(new B().hasSuper(), true);
     });
 
-    it('when overridden a method does NOT automatically call its super method', () => {
+    it.skip('when overridden a method does NOT automatically call its super method', () => {
       class A {hasSuper() { return true; }}
       class B extends A {hasSuper() { return 'nothing'; }}
 
       assert.equal(new B().hasSuper(), void 0);
     });
 
-    it('`super` works across any number of levels of inheritance', () => {
+    it.skip('`super` works across any number of levels of inheritance', () => {
       class A {iAmSuper() { return this.youAreSuper; }}
       class B extends A {constructor() { super(); this.youAreSuper = true; } }
       class C extends B {
@@ -91,7 +91,7 @@ describe('class', () => {
       assert.equal(new C().iAmSuper(), true);
     });
 
-    it('accessing an undefined member of the parent class returns `undefined`', () => {
+    it.skip('accessing an undefined member of the parent class returns `undefined`', () => {
       class A {}
       class B extends A {getMethod() { return super.constructor; }}
 

@@ -10,7 +10,7 @@ describe('inside a class you can use the `static` keyword', () => {
     class IntegrationTest {}
     class UnitTest {}
 
-    it('a static method just has the prefix `static`', () => {
+    it.skip('a static method just has the prefix `static`', () => {
       class TestFactory {
         makeTest() { return new UnitTest(); }
       }
@@ -18,7 +18,7 @@ describe('inside a class you can use the `static` keyword', () => {
       assert.ok(TestFactory.makeTest() instanceof UnitTest);
     });
 
-    it('the method name can be dynamic/computed at runtime', () => {
+    it.skip('the method name can be dynamic/computed at runtime', () => {
       const methodName = 'makeTest';
       class TestFactory {
         static [methodName]() { return new UnitTest(); }
@@ -29,7 +29,7 @@ describe('inside a class you can use the `static` keyword', () => {
   });
 
   describe('for accessors', () => {
-    it('a getter name can be static, just prefix it with `static`', () => {
+    it.skip('a getter name can be static, just prefix it with `static`', () => {
       class UnitTest {
         get testType() { return 'unit'; }
       }
@@ -37,7 +37,7 @@ describe('inside a class you can use the `static` keyword', () => {
       assert.equal(UnitTest.testType, 'unit');
     });
 
-    it('even a static getter name can be dynamic/computed at runtime', () => {
+    it.skip('even a static getter name can be dynamic/computed at runtime', () => {
       const type = 'test' + 'Type';
       class IntegrationTest {
         get type() { return 'integration'; }

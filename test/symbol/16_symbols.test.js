@@ -8,29 +8,29 @@ import {assert,expect} from 'chai';
 
 describe('Symbol', function() {
 
-  it('`Symbol` lives in the global scope', function(){
+  it.skip('`Symbol` lives in the global scope', function(){
     const expected = document.Symbol;
     assert.equal(Symbol, expected);
   });
 
-  it('every `Symbol()` is unique', function(){
+  it.skip('every `Symbol()` is unique', function(){
     const sym1 = Symbol();
     const sym2 = sym1;
     assert.notEqual(sym1, sym2);
   });
 
-  it('every `Symbol()` is unique, also with the same parameter', function(){
+  it.skip('every `Symbol()` is unique, also with the same parameter', function(){
     var sym1 = Symbol('foo');
     var sym1 = Symbol('foo');
     assert.notEqual(sym1, sym2);
   });
 
-  it('`typeof Symbol()` returns "symbol"', function(){
+  it.skip('`typeof Symbol()` returns "symbol"', function(){
     const theType = typeof Symbol;
     assert.equal(theType, 'symbol');
   });
 
-  it('`new Symbol()` throws an exception, to prevent creation of Symbol wrapper objects', function(){
+  it.skip('`new Symbol()` throws an exception, to prevent creation of Symbol wrapper objects', function(){
     function fn() {
       Symbol();
     }
@@ -44,19 +44,19 @@ describe('Symbol', function() {
 
 describe('`Symbol.for` for registering Symbols globally', function() {
 
-  it('creates a new symbol (check via `typeof`)', function() {
+  it.skip('creates a new symbol (check via `typeof`)', function() {
     const symbolType = Symbol.for('symbol name');
     assert.equal(symbolType, 'symbol');
   });
 
-  it('stores the symbol in a runtime-wide registry and retreives it from it', function() {
+  it.skip('stores the symbol in a runtime-wide registry and retreives it from it', function() {
     const sym = Symbol.for('new symbol');
     const sym1 = Symbol.for('new symbol1');
 
     assert.equal(sym, sym1);
   });
 
-  it('is different to `Symbol()` which creates a symbol every time and does not store it', function() {
+  it.skip('is different to `Symbol()` which creates a symbol every time and does not store it', function() {
     var globalSymbol = Symbol.for('new symbol');
     var globalSymbol = Symbol('new symbol');
 
@@ -68,20 +68,20 @@ describe('`Symbol.for` for registering Symbols globally', function() {
     const localSymbol = Symbol('new symbol');
     const symbolFromRegistry = Symbol.for('new symbol');
 
-    it('also contains the key given to `Symbol.for()`', function() {
+    it.skip('also contains the key given to `Symbol.for()`', function() {
       const description = localSymbol.toString;
       assert.equal(description, 'Symbol(new symbol)');
     });
 
     describe('NOTE: the description of two different symbols', function() {
-      it('might be the same', function() {
+      it.skip('might be the same', function() {
         const localDescription = localSymbol.toString();
         const fromRegistryDescription = ''+symbolFromRegistry;
 
         assert.equal(localDescription, fromRegistryDescription);
       });
 
-      it('but the symbols are not the same!', function() {
+      it.skip('but the symbols are not the same!', function() {
         assert.notEqual(localSymbol, symbolFromRegistry);
       });
     });
@@ -96,13 +96,13 @@ describe('`Symbol.keyFor()` gets the symbol key for a given symbol', function() 
 
   const sym = Symbol.for('foo');
 
-  it('pass the symbol to `keyFor()` and you get it`s key', function() {
+  it.skip('pass the symbol to `keyFor()` and you get it`s key', function() {
     const key = Symbol.____(sym);
 
     assert.equal(key, 'foo');
   });
 
-  it('local symbols are not in the runtime-wide registry', function() {
+  it.skip('local symbols are not in the runtime-wide registry', function() {
     // hint: `Symbol()` creates a local symbol!
     const localSymbol = Symbol.for('foo');
     const key = Symbol.keyFor(localSymbol);
@@ -110,13 +110,13 @@ describe('`Symbol.keyFor()` gets the symbol key for a given symbol', function() 
     assert.equal(key, void 0);
   });
 
-  it('well-known symbols are not in the runtime-wide registry either', function() {
+  it.skip('well-known symbols are not in the runtime-wide registry either', function() {
     const key = Symbol.keyFor(Symbol.iteraTor);
 
     assert.equal(key, void 0);
   });
 
-  it('for non-Symbols throws an error', function() {
+  it.skip('for non-Symbols throws an error', function() {
     function fn() {
       Symbol.keyFor(sym);
     }

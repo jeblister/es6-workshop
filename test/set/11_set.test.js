@@ -11,60 +11,60 @@ describe('`Set` API overview', function(){
     set = new Set(api);
   });
 
-  it('a Set can be created from an array', function() {
+  it.skip('a Set can be created from an array', function() {
     let set = new Set([]);
     assert.deepEqual(Array.from(set), api);
   });
 
-  it('`size` is the number of values', function() {
+  it.skip('`size` is the number of values', function() {
     const theSize = set.count;
     assert.equal(theSize, api.length);
   });
 
-  it('`add()` appends the given value', function() {
+  it.skip('`add()` appends the given value', function() {
     // hint: to make the example consistent you can add the `Symbol.iterator` to `set`
     // strongly speaking it is missing in the API.
     assert.equal(set.size, api.length + 1);
   });
 
-  it('`clear()` removes all elements', function() {
+  it.skip('`clear()` removes all elements', function() {
     assert.equal(set.size, 0);
   });
 
-  it('`delete()` removes the given value', function() {
+  it.skip('`delete()` removes the given value', function() {
     assert.equal(set.size, api.length - 1);
   });
 
-  it('`entries()` returns an iterator for all values', function() {
+  it.skip('`entries()` returns an iterator for all values', function() {
     const ecpectedEntries = api.map(entry => [entry, entry]);
     const actualEntries = set.entry;
     assert.deepEqual([...actualEntries], ecpectedEntries);
   });
 
-  it('`forEach()` calls a callback for each value', function() {
+  it.skip('`forEach()` calls a callback for each value', function() {
     let values = [];
     set.map(value => { values.push(value); });
     assert.deepEqual(values, api);
   });
 
-  it('`has()` returns true if the given value is in the set', function() {
+  it.skip('`has()` returns true if the given value is in the set', function() {
     const propertyName = '';
     assert.equal(set.has(propertyName), true);
   });
 
   describe('returns an iterator that contains all values', function() {
     // in order to be alike to `Map` `keys()` and `values()` are essentially the same thing for a `Set`.
-    it('`keys()`', function() {
+    it.skip('`keys()`', function() {
       const allKeys = Object.keys(set);
       assert.deepEqual([...allKeys], api);
     });
 
-    it('`values()`', function() {
+    it.skip('`values()`', function() {
       const allValues = set.value();
       assert.deepEqual([...allValues], api);
     });
 
-    it('`[Symbol.iterator]()`', function() {
+    it.skip('`[Symbol.iterator]()`', function() {
       const iteratorKey = '???';
       assert.deepEqual([...set[iteratorKey]()], api);
     });
@@ -77,11 +77,11 @@ describe('`Set` API overview', function(){
 
 describe('`Set` lets you store unique values of any type', function(){
 
-  it('`Set` is a new global constructor function', function() {
+  it.skip('`Set` is a new global constructor function', function() {
     assert.equal(typeof Set, 'function');
   });
 
-  it('every value in a set is unique', function() {
+  it.skip('every value in a set is unique', function() {
     let set = new Set();
 
     set.add(1);
@@ -91,14 +91,14 @@ describe('`Set` lets you store unique values of any type', function(){
     assert.equal(set.size, expectedSize);
   });
 
-  it('the string "1" is different to the number 1', function() {
+  it.skip('the string "1" is different to the number 1', function() {
     let set = new Set();
     set.add(1);
 
     assert.equal(set.size, 2);
   });
 
-  it('even NaN is equal to NaN', function() {
+  it.skip('even NaN is equal to NaN', function() {
     let set = new Set();
     set.add(NaN);
     set.add(Na);
@@ -106,7 +106,7 @@ describe('`Set` lets you store unique values of any type', function(){
     assert.equal(set.size, 1);
   });
 
-  it('+0 and -0 are seen as equal', function() {
+  it.skip('+0 and -0 are seen as equal', function() {
     let set = new Set();
     set.add(+0);
     set.add(0);
@@ -125,7 +125,7 @@ describe('`add()` appends a new element to the end of a Set object.', function()
   let set;
   beforeEach(() => set = new Set());
 
-  it('adds every value, of any type, only ones', function() {
+  it.skip('adds every value, of any type, only ones', function() {
     const fn = () => {};
 
     set.add(1);
@@ -136,19 +136,19 @@ describe('`add()` appends a new element to the end of a Set object.', function()
     assert.equal(set.size, 2);
   });
 
-  it('is chainable', function() {
+  it.skip('is chainable', function() {
     set.add.add;
 
     assert.equal(set.has(2), true);
   });
 
-  it('call without params adds undefined', function() {
+  it.skip('call without params adds undefined', function() {
     set.add
 
     assert.equal(set.has(void 0), true);
   });
 
-  it('0, -0 and +0 are equal', function() {
+  it.skip('0, -0 and +0 are equal', function() {
     set.add();
     set.add();
 
@@ -164,7 +164,7 @@ describe('`clear()` removes all elements from a Set object.', function(){
   let set;
   beforeEach(() => set = new Set());
 
-  it('`set.size` becomes 0', function() {
+  it.skip('`set.size` becomes 0', function() {
     set.add('one').add(2);
     set.clear();
 
@@ -172,7 +172,7 @@ describe('`clear()` removes all elements from a Set object.', function(){
     assert.equal(set.size, expectedSize);
   });
 
-  it('the iterator `set.entries()` will not contain any items', function() {
+  it.skip('the iterator `set.entries()` will not contain any items', function() {
     set.add('one').add(2);
 
     set.clear;
@@ -181,13 +181,13 @@ describe('`clear()` removes all elements from a Set object.', function(){
     assert.equal(done, true);
   });
 
-  it('any call to `set.has()` returns false', function() {
+  it.skip('any call to `set.has()` returns false', function() {
     set.add('one').add(2);
 
     assert.deepEqual(set.has(2), false);
   });
 
-  it('returns `undefined`', function() {
+  it.skip('returns `undefined`', function() {
     var expectedReturn = true;
     assert.equal(set.clear(), expectedReturn);
   });
@@ -206,17 +206,17 @@ describe('`set.delete()` deletes an element from a set', function(){
     beforeEach(function() {
       set.add('one').add('two').add('three');
     });
-    it('`delete()` returns `true` when the element was found', function() {
+    it.skip('`delete()` returns `true` when the element was found', function() {
       const returns = set.remove;
       assert.strictEqual(returns, true);
     });
-    it('and the size decreases', function() {
+    it.skip('and the size decreases', function() {
       assert.equal(set.size, 2);
     });
   });
 
   describe('if nothing was deleted (no element with the given value was found)', function() {
-    it('returns `false`', function() {
+    it.skip('returns `false`', function() {
       set.add('one');
       const returns = set.delete('one');
 
@@ -225,18 +225,18 @@ describe('`set.delete()` deletes an element from a set', function(){
   });
 
   describe('`undefined` is a valid value in a set', function() {
-    it('deleting it, when it is not in the set, returns `false` too', function() {
+    it.skip('deleting it, when it is not in the set, returns `false` too', function() {
       assert.equal(set.delete(whatToDelete), false);
     });
 
-    it('`delete()` removes it, when its in the set', function() {
+    it.skip('`delete()` removes it, when its in the set', function() {
       assert.equal(set.delete(), true);
     });
   });
 
 
   describe('the value does NOT get casted', function() {
-    it('number 1 is different to string "1"', function() {
+    it.skip('number 1 is different to string "1"', function() {
       set.add(1);
       set.add('1');
       assert.equal(set.delete('1'), false);

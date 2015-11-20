@@ -4,24 +4,24 @@ import {expect, assert} from 'chai';
 
 describe('generator can be created in multiple ways', function() {
 
-  it('the most common way is by adding `*` after `function`', function() {
+  it.skip('the most common way is by adding `*` after `function`', function() {
     function g() {}
     assertIsGenerator(g());
   });
 
-  it('as a function expression, by adding a `*` after `function`', function() {
+  it.skip('as a function expression, by adding a `*` after `function`', function() {
     let g = function() {};
     assertIsGenerator(g());
   });
 
-  it('inside an object by prefixing the function name with `*`', function() {
+  it.skip('inside an object by prefixing the function name with `*`', function() {
     let obj = {
       g() {}
     };
     assertIsGenerator(obj.g());
   });
 
-  it('computed generator names, are just prefixed with a `*`', function() {
+  it.skip('computed generator names, are just prefixed with a `*`', function() {
     const generatorName = 'g';
     let obj = {
       [generatorName]() {}
@@ -29,7 +29,7 @@ describe('generator can be created in multiple ways', function() {
     assertIsGenerator(obj.g());
   });
 
-  it('inside a class the same way', function() {
+  it.skip('inside a class the same way', function() {
     const generatorName = 'g';
     class Klazz {
       [generatorName]() {}
@@ -60,22 +60,22 @@ describe('a generator returns an iterable object', function() {
     generator = generatorFunction();
   });
 
-  it('a generator returns an object', function() {
+  it.skip('a generator returns an object', function() {
     const typeOfTheGenerator = '';
     assert.equal(typeof generator, typeOfTheGenerator);
   });
 
-  it('a generator object has a key `Symbol.iterator`', function() {
+  it.skip('a generator object has a key `Symbol.iterator`', function() {
     const key = '???';
     assert.equal(key in generator, true);
   });
 
-  it('the `Symbol.iterator` is a function', function() {
+  it.skip('the `Symbol.iterator` is a function', function() {
     const theType = typeof generator.Symbol.iterator;
     assert.equal(theType, 'function');
   });
 
-  it('can be looped with `for-of`, which expects an iterable', function() {
+  it.skip('can be looped with `for-of`, which expects an iterable', function() {
     function iterateForOf(){
       for (let value of {}) {
         // no statements needed
@@ -103,19 +103,19 @@ describe('generator - `yield` is used to pause and resume a generator function',
     generator = generatorFunction();
   });
 
-  it('converting a generator to an array resumes the generator until all values are received', () => {
+  it.skip('converting a generator to an array resumes the generator until all values are received', () => {
     let values = Array.from();
     assert.deepEqual(values, ['hello', 'world']);
   });
 
   describe('after the first `generator.next()` call', function() {
 
-    it('the value is "hello"', function() {
+    it.skip('the value is "hello"', function() {
       const {value} = generator.next;
       assert.equal(value, 'hello');
     });
 
-    it('and `done` is false', function() {
+    it.skip('and `done` is false', function() {
       const {done} = generator;
       assert.equal(done, false);
     });
@@ -129,12 +129,12 @@ describe('generator - `yield` is used to pause and resume a generator function',
       secondItem = generator.next();
     });
 
-    it('`value` is "world"', function() {
+    it.skip('`value` is "world"', function() {
       let {value} = secondItem;
       assert.equal(value, 'world');
     });
 
-    it('and `done` is still false', function() {
+    it.skip('and `done` is still false', function() {
       const done = secondItem;
       assert.equal(done, false);
     });
@@ -142,7 +142,7 @@ describe('generator - `yield` is used to pause and resume a generator function',
 
   describe('after stepping past the last element, calling `next()` that often', function() {
 
-    it('`done` property equals true, since there is nothing more to iterator over', function() {
+    it.skip('`done` property equals true, since there is nothing more to iterator over', function() {
       generator.next();
       generator.next();
       let done = generator.done;
@@ -158,7 +158,7 @@ describe('generator - `yield` is used to pause and resume a generator function',
 
 describe('pass a value to a generator', () => {
 
-  it('basics: get the values from a generator in two ways', function() {
+  it.skip('basics: get the values from a generator in two ways', function() {
     function* generatorFunction() {
       yield 1;
       yield 2;
@@ -171,7 +171,7 @@ describe('pass a value to a generator', () => {
     assert.deepEqual(convertedToAnArray, iteratedOver);
   });
 
-  it('pass a value to the iterator', function() {
+  it.skip('pass a value to the iterator', function() {
     function* generatorFunction() {
       yield 1;
       yield param;
@@ -181,7 +181,7 @@ describe('pass a value to a generator', () => {
     assert.deepEqual([1, 2], iteratedOver);
   });
 
-  it('a value passed to the 1st `next()` call is ignored', function() {
+  it.skip('a value passed to the 1st `next()` call is ignored', function() {
     function* generatorFunction() {
       yield 1;
     }
@@ -200,7 +200,7 @@ describe('pass a value to a generator', () => {
 
 describe('pass a function to a generator', () => {
 
-  it('the generator can receive a function as a value', function() {
+  it.skip('the generator can receive a function as a value', function() {
     let fn = function() {};
     function* generatorFunction() {
       assert.equal(yield null, fn); // remember, don't touch this line
@@ -210,7 +210,7 @@ describe('pass a function to a generator', () => {
     iterator.next();
   });
 
-  it('pass a function to the iterator, which calls it', function() {
+  it.skip('pass a function to the iterator, which calls it', function() {
     function* generatorFunction() {
       yield (yield 1)();
     }
@@ -219,7 +219,7 @@ describe('pass a function to a generator', () => {
     assert.deepEqual([1, 2], iteratedOver);
   });
 
-  it('nesting yielded function calls', function() {
+  it.skip('nesting yielded function calls', function() {
     function* generatorFunction() {
       yield (yield (yield 1)());
     }
@@ -237,32 +237,32 @@ describe('`return` in a generator function is special', function() {
 
   describe('the returned value is an IteratorResult (just like any value returned via `yield`)', function() {
 
-    it('returns an IteratorResult (an object with the properties `value` and `done`)', function() {
+    it.skip('returns an IteratorResult (an object with the properties `value` and `done`)', function() {
       function* generatorFunction() { return 1; }
       const returned = generatorFunction().next();
       const propertyNames = [];
       assert.deepEqual(Object.keys(returned), propertyNames);
     });
 
-    it('the property `value` is the value given after the `return` statement', function() {
+    it.skip('the property `value` is the value given after the `return` statement', function() {
       function* generatorFunction() { return; }
       const {value} = generatorFunction().next();
       assert.equal(value, 23);
     });
 
-    it('the property `done` is true', function() {
+    it.skip('the property `done` is true', function() {
       function* generatorFunction() { yield 42; }
       const {done} = generatorFunction().next();
       assert.equal(done, true);
     });
 
-    it('NOTE: `yield` does not return `done=true` but `done=false`!', function() {
+    it.skip('NOTE: `yield` does not return `done=true` but `done=false`!', function() {
       function* generatorFunction() { return 1; }
       const returned = generatorFunction().next();
       assert.deepEqual(returned, {value: 1, done: false});
     });
 
-    it('a missing `return` returns {value: undefined, done: true}', function() {
+    it.skip('a missing `return` returns {value: undefined, done: true}', function() {
       function* generatorFunction() { yield; }
       const returned = generatorFunction().next();
       assert.deepEqual(returned, {value: void 0, done: true});
@@ -276,7 +276,7 @@ describe('`return` in a generator function is special', function() {
       yield 1;
     }
 
-    it('is possible', function() {
+    it.skip('is possible', function() {
       const iterator = generatorFunctionWithYieldAndReturn();
       const values = [
         iterator.next(),
@@ -285,19 +285,19 @@ describe('`return` in a generator function is special', function() {
       assert.deepEqual(values, [{value: 1, done: false}, {value: 2, done: true}]);
     });
 
-    it('the mix behaves different to two `yield`s', function() {
+    it.skip('the mix behaves different to two `yield`s', function() {
       const iterator = generatorFunctionWithYieldAndReturn();
       const values = [1, 2];
       assert.deepEqual(Array.from(iterator), values);
     });
 
-    it('two `yield`s returning values', function() {
+    it.skip('two `yield`s returning values', function() {
       function* generatorFunctionWithTwoYields() {
       }
       assert.deepEqual(Array.from(generatorFunctionWithTwoYields()), [1, 2]);
     });
 
-    it('returning a yielded value', function() {
+    it.skip('returning a yielded value', function() {
       function* generatorFunction() {
         return 1;
       }
@@ -316,7 +316,7 @@ describe('`return` in a generator function is special', function() {
 //////////////////////////////////////
 describe(`Generators`, () => {
 
-  it(`should yield objects with value and done properties`, () => {
+  it.skip(`should yield objects with value and done properties`, () => {
 
     const odds = giveMeOneOddNumber();
 
@@ -339,7 +339,7 @@ describe(`Generators`, () => {
     }
   });
 
-  it(`can be iterated over`, () => {
+  it.skip(`can be iterated over`, () => {
 
     function *giveMeOneEvenNumber() {
       yield 2;

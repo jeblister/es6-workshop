@@ -54,10 +54,11 @@ If you want the tests to continue running as you make changes, run:
 ```
 npm run test:watch
 ```
+Each directory
 
-This will execute the tests in the `test` directory. Currently all of these tests are disabled, using `it.skip`. Your
-job is to one-by-one turn each test back on and get the test to pass, by writing the required ES6 code. Once you have
-written the required code, the tests will pass, and you can move onto the next test.
+This will execute the tests in the `test` directory. Currently all of these tests are disabled, using `it.skip`.  You can test each subdirectory  by uncomment the import file in `./test/index.js`.
+
+Your job is to one-by-one turn each test back on and get the test to pass, by writing the required ES6 code. Once you have written the required code, the tests will pass, and you can move onto the next test.
 
 # Thanks
 

@@ -58,7 +58,8 @@ describe('class', () => {
   describe('inside a class use `super` to access parent methods', () => {
 
     it('use of `super` without `extends` fails (already when transpiling)', () => {
-      class A {hasSuper() { return super; }}
+      // uncomment this and fix it
+      // class A {hasSuper() { return super; }}
 
       assert.equal(new A().hasSuper(), false);
     });
@@ -82,7 +83,8 @@ describe('class', () => {
       class B extends A {constructor() { super(); this.youAreSuper = true; } }
       class C extends B {
         iAmSuper() {
-          return this.iAmSuper();
+          // uncomment and fix it
+        //  return this.iAmSuper();
         }
       }
 

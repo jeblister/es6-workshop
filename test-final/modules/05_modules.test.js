@@ -3,9 +3,9 @@ import {assert} from 'chai';
 
 import {expect} from 'chai';
 
-import Mathy, {default as myMathy} from '../common/Mathy';
+import Mathy, {default as myMathy} from '../../common/Mathy';
 
-import {sqrt as mySqrt, square as mySquare } from '../common/Mathy';
+import {sqrt as mySqrt, square as mySquare } from '../../common/Mathy';
 
 import _ from 'lodash';
 

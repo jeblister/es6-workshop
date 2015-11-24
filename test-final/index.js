@@ -64,5 +64,6 @@ import './spread/08_spread.test';
 //import './symbol/16_symbols.test';
 
 import './template-strings/02_template-literals.test';
+import './template-strings/tag-template.test';
 
 //import './unicode/in-strings';

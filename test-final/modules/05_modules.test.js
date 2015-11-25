@@ -9,6 +9,8 @@ import {sqrt as mySqrt, square as mySquare } from '../../common/Mathy';
 
 import _ from 'lodash';
 
+import { Dog, Wolf } from '../../common/Zoo.api';
+
 describe('ES6 Modules: use `import` to import functions that have been exported (somewhere else)', () => {
   it('import an entire module using `import <name> from "<moduleName> or path"`', () => {
 
@@ -48,4 +50,18 @@ describe('ES6 Modules: use `import` to import functions that have been exported 
     expect(_).to.exist;
 
   });
+
+  it('can import a costum module from folder ', () => {
+
+    let myDog = new Dog('Sherlock', 'beagle');
+    console.log(myDog.name + ': ' + myDog.bark); // Sherlock: woof, woof!
+    expect(myDog.name + ': ' + myDog.bark).to.equal("Sherlock: woof, woof!");
+
+    let myWolf = new Wolf('Werewolf');
+    console.log(myWolf.name + ': ' + myWolf.bark); // Werewolf: woooooow!'
+
+    expect(myWolf.name + ': ' + myWolf.bark).to.equal("Werewolf: woooooow!");
+
+  });
+
 });

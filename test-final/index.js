@@ -44,6 +44,10 @@ import './object-api/03_object-api.test'
 
 import './object-literal/06_object-literal.test';
 
+import './patterns/facade.test';
+import './patterns/observer-events.test';
+
+
 //import './promise/14_promises.test';
 
 //import './reflect/apply';

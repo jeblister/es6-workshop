@@ -16,7 +16,7 @@ describe(`Tagged Templates`, () => {
       }
     });
   });
-  describe.only(`Tagged template function`, () => {
+  describe(`Tagged template function`, () => {
     it(`should html escape`, () => {
       // Tagged template function
       function html(pieces) {
@@ -36,7 +36,7 @@ describe(`Tagged Templates`, () => {
       expect(html`<b>${username} says</b>: "${tag}"`).to.equal('<b>Domenic Denicola says</b>: "&lt; is a fun tag"')
     });
 
-    it(`should safeHtml escape`, () => {
+    it.skip(`should safeHtml escape`, () => {
       function safehtml(pieces) {
         let result = pieces[0];
         let substitutions = [].slice.call(arguments, 1);

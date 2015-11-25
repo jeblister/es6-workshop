@@ -1,12 +1,8 @@
-import * as chai from 'chai';
+import {expect} from 'chai';
 import * as sinon from 'sinon';
-import * as sinonChai from 'sinon-chai';
 import Subject from './Subject';
 
-var expect = chai.expect;
-
-
-describe.only('Observer and events', () => {
+describe('Observer and events', () => {
   // A Subject object maintains a list of interested Observer objects, automatically notifying them of its changes.
   let ball, human, dog,cat;
   beforeEach(()=> {
